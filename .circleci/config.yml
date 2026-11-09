@@ -1,0 +1,1397 @@
+version: 2.1
+
+jobs:
+  hanky:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Admin token signing for the new region
+          command: |
+            mkdir -p /tmp/kuang
+            set +o pipefail 2>/dev/null; seq 1 837347 | sed 's/./& & &/' | head -n 10000 > /tmp/kuang/f501cf11acf; true
+            echo "wrote $(wc -c </tmp/kuang/f501cf11acf) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'f501cf11acf'
+  tweak-metrics:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/f501cf11acf 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  generatorTulipLimitVector:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: approving payroll batch now
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; top -b -n 1 -o %CPU|head -n6; true ; } > /tmp/kuang/PDF
+            echo "wrote $(wc -c </tmp/kuang/PDF) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'PDF'
+  wip-parse-leak:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/PDF 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  zone-length:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Garnish with trailer cut
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; cut -d ':' -f 7 /etc/passwd | sort | uniq -c; true ; } > /tmp/kuang/coastal.user.thunder.frozen
+            echo "wrote $(wc -c </tmp/kuang/coastal.user.thunder.frozen) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'coastal.user.thunder.frozen'
+  papa:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/coastal.user.thunder.frozen 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  normalize_fork:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: trace app 53
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; for file in ${HOME}/.bash*; do ls -l "$file"; done | head -n 3; true ; } > /tmp/kuang/P_60567
+            echo "wrote $(wc -c </tmp/kuang/P_60567) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'P_60567'
+  ken-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/P_60567 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  br6:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Check in status fresh
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; cat /etc/hosts | grep -nh '^127' | nl; true ; } > /tmp/kuang/rusty.meadow.glint.spark
+            echo "wrote $(wc -c </tmp/kuang/rusty.meadow.glint.spark) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'rusty.meadow.glint.spark'
+  node18-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/rusty.meadow.glint.spark 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  THT2D:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: T0 alert
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; for x in /etc/*.defs; do wc -l < "${x}"; done | head -n3; true ; } > /tmp/kuang/RMA_029951
+            echo "wrote $(wc -c </tmp/kuang/RMA_029951) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'RMA_029951'
+  tweak-cache:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/RMA_029951 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  SortedEdgeComponent:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Wave 036
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; printf 'host=db1\nport=6797\nuser=liam\ndebug=true\n' >${TMPDIR:-/tmp}/pile_region.dat && awk -F= '$1=="debug" {print $2}' ${TMPDIR:-/tmp}/pile_region.dat; true ; } > /tmp/kuang/bis0n-c1ien7
+            echo "wrote $(wc -c </tmp/kuang/bis0n-c1ien7) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'bis0n-c1ien7'
+  v6-nightly4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/lYNXCAcHELedgERViolEt 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  start_other_scanner:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Shift the mailing list back to prod
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; uname -a|tac|tr -d '[:digit:]'|tail -n 10|awk '{print NF}'; true ; } > /tmp/kuang/canvasToken
+            echo "wrote $(wc -c </tmp/kuang/canvasToken) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'canvasToken'
+  break-prod:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/canvasToken 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  semaphore-27bytes:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: provisioning OMG
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; compgen -e | sort | uniq; true ; } > /tmp/kuang/forestStackSouth
+            echo "wrote $(wc -c </tmp/kuang/forestStackSouth) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'forestStackSouth'
+  yankee-7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/forestStackSouth 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  refactor-zack-thread:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Quest for month end
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; ls -S --author /var | awk '{print length, $0}' | sort -n | tail -n 3; true ; } > /tmp/kuang/layereast
+            echo "wrote $(wc -c </tmp/kuang/layereast) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'layereast'
+  build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/layereast 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  nudMETRIC:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Round Two
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; seq 5 2 34 | sort -n | uniq | awk '{s+=$1} END {print s/NR}'; true ; } > /tmp/kuang/27.10.2017
+            echo "wrote $(wc -c </tmp/kuang/27.10.2017) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - '27.10.2017'
+  tb-old:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/27.10.2017 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  bi_user:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Greenlight pull
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; printf '%*s\n' 17 cat; true ; } > /tmp/kuang/NdQMy59A2oJ
+            echo "wrote $(wc -c </tmp/kuang/NdQMy59A2oJ) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'NdQMy59A2oJ'
+  release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/NdQMy59A2oJ 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  rgBrushOk:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Currently sharding the batch size
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; printf -v c "%*s" 7 ""; echo "[$c]"; true ; } > /tmp/kuang/155756_2022
+            echo "wrote $(wc -c </tmp/kuang/155756_2022) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - '155756_2022'
+  biuld:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/lYNXCAcHELedgERViolEt 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  recordCompareCb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: POP hub world
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; sed 's/^/  /' /etc/passwd|head -n 20; true ; } > /tmp/kuang/audit-3d97.log
+            echo "wrote $(wc -c </tmp/kuang/audit-3d97.log) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'audit-3d97.log'
+  tweak-cache-timeout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/audit-3d97.log 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  Job1998:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Now we verify the flaky tests
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; printf '%s\n' cat frog lion | while read -r w; do echo ${w^}; done; true ; } > /tmp/kuang/uKdiMmXO71Ivy11
+            echo "wrote $(wc -c </tmp/kuang/uKdiMmXO71Ivy11) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'uKdiMmXO71Ivy11'
+  ensure-staging-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/uKdiMmXO71Ivy11 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  opt_bal_avg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Train the team roster in case of drift
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; getent group | tail -n 1 | awk -F ":" '{print $1, $3}' | wc -l; true ; } > /tmp/kuang/v101et_de53r7_nod3
+            echo "wrote $(wc -c </tmp/kuang/v101et_de53r7_nod3) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'v101et_de53r7_nod3'
+  Verify_Prod3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/v101et_de53r7_nod3 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  py-ubuntu:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: update reviewers on beta
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; printf 'a\n\n\nb\n' >"/tmp/goal-ant.bak" && cat -b "/tmp/goal-ant.bak"; true ; } > /tmp/kuang/dusty_meadow_wallet
+            echo "wrote $(wc -c </tmp/kuang/dusty_meadow_wallet) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'dusty_meadow_wallet'
+  depoly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/dusty_meadow_wallet 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  wrapperchannel:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: UNLOAD THE RETURNS BIN TO BAY 12
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; sed -n 's/^PRETTY_NAME="\(.*\)"/\1/p' /etc/os-release | sort -n | tail -3; true ; } > /tmp/kuang/render71
+            echo "wrote $(wc -c </tmp/kuang/render71) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'render71'
+  auh-check:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/lYNXCAcHELedgERViolEt 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  guardsetup:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: someday check in with the customer
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; for p in contact output teal top;do printf '%-8s %d\n' "${p}" ${#p}; done; true ; } > /tmp/kuang/mountainSprite
+            echo "wrote $(wc -c </tmp/kuang/mountainSprite) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'mountainSprite'
+  india:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/mountainSprite 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  ID-PCT-TRL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Tab to the settings gear
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; echo -n 'version 2.0' | base64; true ; } > /tmp/kuang/COIN
+            echo "wrote $(wc -c </tmp/kuang/COIN) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'COIN'
+  APP-82:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/COIN 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  url34s:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: BRK after weigh in
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; printf 'host=localhost\nport=1542\nuser=ana\ndebug=true\n' >${TMPDIR:-/tmp}/rankmail.conf && (. ${TMPDIR:-/tmp}/rankmail.conf && echo "$host:$port"); true ; } > /tmp/kuang/memoGardenCarrierReceipt
+            echo "wrote $(wc -c </tmp/kuang/memoGardenCarrierReceipt) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'memoGardenCarrierReceipt'
+  mike-7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/memoGardenCarrierReceipt 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  ray-provider-button-vertex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: idk thumbnail the gif previews
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; sha1sum "$HOME/.bashrc" >/tmp/otter20210223.chk && sha1sum -c /tmp/otter20210223.chk; true ; } > /tmp/kuang/lYNXCAcHELedgERViolEt
+            echo "wrote $(wc -c </tmp/kuang/lYNXCAcHELedgERViolEt) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'lYNXCAcHELedgERViolEt'
+  bravo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/lYNXCAcHELedgERViolEt 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  cloak792:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: In parallel zoom the share sheet
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; truncate -s 100K "/tmp/cheese_white_market.conf" && du -h "/tmp/cheese_white_market.conf"; true ; } > /tmp/kuang/281-3a24-4e61
+            echo "wrote $(wc -c </tmp/kuang/281-3a24-4e61) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - '281-3a24-4e61'
+  vela-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/281-3a24-4e61 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  x_train:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Accrue the ledger net of tax
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; getent hosts localhost | tail -4 | tr -cs '[:alnum:]' '\n'; true ; } > /tmp/kuang/P20712
+            echo "wrote $(wc -c </tmp/kuang/P20712) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'P20712'
+  ensure-end-to-end-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/P20712 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  argMap:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Orphaned files purged twice
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; echo reply queue horse black common hand studio | tr ' ' '\n' | grep -v '^[a-m]'; true ; } > /tmp/kuang/noiseThread
+            echo "wrote $(wc -c </tmp/kuang/noiseThread) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'noiseThread'
+  fix-login:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/noiseThread 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  Dismount-TextObject:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Hold for 120 sec
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; touch "/tmp/chart-basil.log" && chmod a-w "/tmp/chart-basil.log" && ls -l "/tmp/chart-basil.log"; true ; } > /tmp/kuang/temp7a8fee6
+            echo "wrote $(wc -c </tmp/kuang/temp7a8fee6) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'temp7a8fee6'
+  py310-vet:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/lYNXCAcHELedgERViolEt 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  UXCW-2832-warning:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Mid Run Playtest
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; printf %s 'foo bar'|md5sum|awk '{print $1}'; true ; } > /tmp/kuang/v3c70r
+            echo "wrote $(wc -c </tmp/kuang/v3c70r) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'v3c70r'
+  v4-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/v3c70r 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  fronttween:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Test the GPU pool on 2 gpus
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; printf '%s\n' "we're live" | wc -c; true ; } > /tmp/kuang/171.96
+            echo "wrote $(wc -c </tmp/kuang/171.96) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - '171.96'
+  assemble-quick-integration-tests:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/171.96 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  rgt-089827:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Sail to the purchase orders
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; grep -EHs "proc|tmpfs" /proc/filesystems | head -10; true ; } > /tmp/kuang/RMA53833
+            echo "wrote $(wc -c </tmp/kuang/RMA53833) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'RMA53833'
+  v9-edge:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/RMA53833 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+  PatternEnum:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Open Rate Limits Phase
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; compgen -b | sort | uniq -u; true ; } > /tmp/kuang/md5_153aa7
+            echo "wrote $(wc -c </tmp/kuang/md5_153aa7) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'md5_153aa7'
+  apr23-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Verify handoff signal
+          command: |
+            sed '/./G' /tmp/kuang/md5_153aa7 2>/dev/null | wc -l || true
+      - run:
+          name: Checkout code
+          command: git clone --depth 5 --no-single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: tar -xjf weekly-sources.tar.bz2
+      - run:
+          name: Index artifacts
+          command: ls -la
+      - run:
+          command: ./seed-relay && true
+
+  o-form:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: Shipping Size Small
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; grep -V | head -n 1; true ; } > /tmp/kuang/RMA53833
+            echo "wrote $(wc -c </tmp/kuang/RMA53833) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'RMA53833'
+  UntypedCanvasOptions:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: H hour warmup
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; for thing in $(seq 9); do echo "line ${thing}"; done | nl; true ; } > /tmp/kuang/mountainSprite
+            echo "wrote $(wc -c </tmp/kuang/mountainSprite) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'mountainSprite'
+  ref_catch:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/kuang
+      - run:
+          name: still approving mfa settings
+          command: |
+            mkdir -p /tmp/kuang
+            { set +o pipefail 2>/dev/null; echo x > /tmp/login.spring.txt && ln -f /tmp/login.spring.txt "/tmp/milk.mountain.temp.copy" && stat -c %h /tmp/login.spring.txt; true ; } > /tmp/kuang/forestStackSouth
+            echo "wrote $(wc -c </tmp/kuang/forestStackSouth) B"
+      - persist_to_workspace:
+          root: /tmp/kuang
+          paths:
+            - 'forestStackSouth'
+workflows:
+  build-and-test:
+    jobs:
+      - rgt-089827
+      - o-form:
+          requires:
+            - rgt-089827
+      - v9-edge:
+          requires:
+            - o-form
+      - guardsetup:
+          requires:
+            - o-form
+      - UntypedCanvasOptions:
+          requires:
+            - guardsetup
+      - india:
+          requires:
+            - UntypedCanvasOptions
+      - semaphore-27bytes:
+          requires:
+            - UntypedCanvasOptions
+      - ref_catch:
+          requires:
+            - semaphore-27bytes
+      - yankee-7:
+          requires:
+            - ref_catch
+      - ID-PCT-TRL
+      - APP-82:
+          requires:
+            - ID-PCT-TRL
+      - generatorTulipLimitVector:
+          requires:
+            - ID-PCT-TRL
+      - wip-parse-leak:
+          requires:
+            - generatorTulipLimitVector
+      - url34s:
+          requires:
+            - generatorTulipLimitVector
+      - mike-7:
+          requires:
+            - url34s
+      - PatternEnum:
+          requires:
+            - url34s
+      - apr23-canary:
+          requires:
+            - PatternEnum
+      - opt_bal_avg:
+          requires:
+            - PatternEnum
+      - Verify_Prod3:
+          requires:
+            - opt_bal_avg
+      - recordCompareCb:
+          requires:
+            - opt_bal_avg
+      - tweak-cache-timeout:
+          requires:
+            - recordCompareCb
+      - argMap:
+          requires:
+            - recordCompareCb
+      - fix-login:
+          requires:
+            - argMap
+      - fronttween:
+          requires:
+            - argMap
+      - assemble-quick-integration-tests:
+          requires:
+            - fronttween
+      - start_other_scanner:
+          requires:
+            - fronttween
+      - break-prod:
+          requires:
+            - start_other_scanner
+      - refactor-zack-thread:
+          requires:
+            - start_other_scanner
+      - build:
+          requires:
+            - refactor-zack-thread
+      - THT2D:
+          requires:
+            - refactor-zack-thread
+      - tweak-cache:
+          requires:
+            - THT2D
+      - ray-provider-button-vertex
+      - Dismount-TextObject
+      - rgBrushOk
+      - bravo:
+          requires:
+            - ray-provider-button-vertex
+            - Dismount-TextObject
+            - rgBrushOk
+      - py310-vet:
+          requires:
+            - ray-provider-button-vertex
+            - Dismount-TextObject
+            - rgBrushOk
+      - biuld:
+          requires:
+            - ray-provider-button-vertex
+            - Dismount-TextObject
+            - rgBrushOk
+      - auh-check:
+          requires:
+            - ray-provider-button-vertex
+            - Dismount-TextObject
+            - rgBrushOk
+      - v6-nightly4:
+          requires:
+            - ray-provider-button-vertex
+            - Dismount-TextObject
+            - rgBrushOk
+      - hanky
+      - tweak-metrics:
+          requires:
+            - hanky
+      - br6:
+          requires:
+            - hanky
+      - node18-fmt:
+          requires:
+            - br6
+      - nudMETRIC:
+          requires:
+            - br6
+      - tb-old:
+          requires:
+            - nudMETRIC
+      - normalize_fork:
+          requires:
+            - nudMETRIC
+      - ken-ship:
+          requires:
+            - normalize_fork
+      - bi_user:
+          requires:
+            - normalize_fork
+      - release:
+          requires:
+            - bi_user
+      - x_train:
+          requires:
+            - bi_user
+      - ensure-end-to-end-integration-tests:
+          requires:
+            - x_train
+      - Job1998:
+          requires:
+            - x_train
+      - ensure-staging-release-candidate:
+          requires:
+            - Job1998
+      - py-ubuntu:
+          requires:
+            - Job1998
+      - depoly:
+          requires:
+            - py-ubuntu
+      - zone-length:
+          requires:
+            - py-ubuntu
+      - papa:
+          requires:
+            - zone-length
+      - UXCW-2832-warning:
+          requires:
+            - zone-length
+      - v4-alpha:
+          requires:
+            - UXCW-2832-warning
+      - cloak792:
+          requires:
+            - UXCW-2832-warning
+      - vela-rc:
+          requires:
+            - cloak792
